@@ -3,9 +3,12 @@ import Layout from '../src/components/Layout';
 import Head from 'next/head';
 
 // Add your Instagram reel URLs here
-// Format: https://www.instagram.com/reel/REEL_ID/
+// Format: https://www.instagram.com/reel/REEL_ID/ or https://www.instagram.com/p/POST_ID/
 const reelUrls: string[] = [
   'https://www.instagram.com/reel/DRwCYR_jhOm/',
+  'https://www.instagram.com/p/DTeMt6FkSHA/',
+  'https://www.instagram.com/p/DTjg_W9EXp9/',
+  'https://www.instagram.com/p/DTv5k6SDycT/',
 ];
 
 const Reels: React.FC = () => {
