@@ -14,6 +14,14 @@ export default function CustomCursor() {
   const smoothX = useSpring(cursorX, springConfig);
   const smoothY = useSpring(cursorY, springConfig);
 
+  // Trail dots — progressively laggier springs
+  const trail1X = useSpring(cursorX, { damping: 20, stiffness: 150, mass: 0.8 });
+  const trail1Y = useSpring(cursorY, { damping: 20, stiffness: 150, mass: 0.8 });
+  const trail2X = useSpring(cursorX, { damping: 18, stiffness: 100, mass: 1.0 });
+  const trail2Y = useSpring(cursorY, { damping: 18, stiffness: 100, mass: 1.0 });
+  const trail3X = useSpring(cursorX, { damping: 16, stiffness: 70, mass: 1.2 });
+  const trail3Y = useSpring(cursorY, { damping: 16, stiffness: 70, mass: 1.2 });
+
   useEffect(() => {
     // Check if mobile/touch device
     const checkMobile = () => {
@@ -115,6 +123,35 @@ export default function CustomCursor() {
           }}
         />
       </motion.div>
+
+      {/* Trail dots */}
+      {[
+        { x: trail1X, y: trail1Y, size: 5, opacity: 0.25 },
+        { x: trail2X, y: trail2Y, size: 3.5, opacity: 0.15 },
+        { x: trail3X, y: trail3Y, size: 2.5, opacity: 0.08 },
+      ].map((dot, i) => (
+        <motion.div
+          key={i}
+          className="pointer-events-none fixed z-[9999]"
+          style={{
+            x: dot.x,
+            y: dot.y,
+            translateX: "-50%",
+            translateY: "-50%",
+            width: dot.size,
+            height: dot.size,
+          }}
+          animate={{
+            opacity: isHidden || isHovering ? 0 : dot.opacity,
+          }}
+          transition={{ opacity: { duration: 0.15 } }}
+        >
+          <div
+            className="w-full h-full rounded-full"
+            style={{ backgroundColor: "#1A1715" }}
+          />
+        </motion.div>
+      ))}
     </>
   );
 }

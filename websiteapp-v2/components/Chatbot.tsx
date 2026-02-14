@@ -14,7 +14,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "0",
-      text: "Hey! Ask me anything about Arav — projects, experience, skills, or just say hi.",
+      text: "Hey! Ask me anything about Arav. Projects, experience, skills, or just say hi.",
       isUser: false,
     },
   ]);
@@ -96,7 +96,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
-            className="fixed bottom-20 right-6 z-[999] w-[360px] max-w-[calc(100vw-48px)] h-[480px] bg-bg border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-6 z-[999] w-[360px] max-w-[calc(100vw-48px)] h-[480px] max-h-[calc(100vh-120px)] bg-bg border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="px-5 py-4 border-b border-border">
