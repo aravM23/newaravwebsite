@@ -11,11 +11,19 @@ const projects = [
   {
     name: "GrayPass",
     description:
-      "Building cognitive biometric security infrastructure for identity and authentication in enterprise systems. Backed with $100K in pre-seed funding from the 1517 Fund. Converts user inputs into a privacy-preserving 15-D feature vector, mapped to a stable 64-D embedding space via contrastive learning. Cancelable biometric templates using salted hashes.",
+      "Building cognitive biometric security infrastructure for identity and authentication in enterprise systems. $350,000 pre-seed, $3K MRR (afore 26). Converts user inputs into a privacy-preserving 15-D feature vector, mapped to a stable 64-D embedding space via contrastive learning. Cancelable biometric templates using salted hashes.",
     tech: ["Python", "PyTorch", "JavaScript", "NumPy", "Cryptography", "FastAPI"],
     link: "https://www.graypass.org/",
-    funding: "$100K pre-seed from 1517 Fund",
+    funding: "$350,000 pre-seed, $3K MRR (afore 26)",
     status: "latest",
+  },
+  {
+    name: "Oro",
+    description:
+      "Fashion app that analyzes your mood boards, camera roll, and daily fit pics to build your style profile. Algorithmically generates context-aware outfits from your existing wardrobe and discovers capsule pieces within your budget to purchase. 300K+ views on Instagram, 5,000 downloads, featured at Fashion Week, and 17 brand partners.",
+    tech: [],
+    link: "#",
+    status: "creating content",
   },
   {
     name: "Post-It",
@@ -91,7 +99,7 @@ const workExperience = [
     role: "CEO & Founder",
     company: "TurtleShell",
     description:
-      "Got my first VC cheque for this at 15. Got some grants and awards and government backing by 16. Forced to shut it down 6 months after all that (lol). Geospatial ETL pipeline on 125K+ criminology records. GNN with PyTorch Geometric for urban safety modeling.",
+      "Got $30K in VC for this at 15. Got some grants and awards and government backing by 16. Forced to shut it down 6 months after all that (lol). Geospatial ETL pipeline on 125K+ criminology records. GNN with PyTorch Geometric for urban safety modeling.",
     type: "founder",
   },
   {
@@ -151,7 +159,7 @@ export default function ProjectsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Projects
+            projects
           </h2>
         </FadeIn>
 
@@ -171,12 +179,12 @@ export default function ProjectsPage() {
                       {project.name}
                     </h3>
                     {project.status && (
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-accent/80 bg-accent/5 px-2 py-0.5 rounded-full border border-accent/10">
+                      <span className="text-[11px] font-mono lowercase tracking-wider text-text-primary/70 bg-text-primary/[0.04] px-2 py-0.5 rounded-full border border-text-primary/10">
                         {project.status}
                       </span>
                     )}
                     {project.funding && (
-                      <span className="text-[10px] font-mono text-text-secondary bg-bg-secondary px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] font-mono text-text-secondary bg-bg-secondary px-2 py-0.5 rounded-full">
                         {project.funding}
                       </span>
                     )}
@@ -213,7 +221,7 @@ export default function ProjectsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Experience
+            experience
           </h2>
         </FadeIn>
 
@@ -229,7 +237,7 @@ export default function ProjectsPage() {
                     @ {exp.company}
                   </span>
                 </p>
-                <span className="inline-block text-[10px] font-mono uppercase tracking-widest text-text-secondary/60 mt-1 mb-2">
+                <span className="inline-block text-[11px] font-mono lowercase tracking-wider text-text-secondary/60 mt-1 mb-2">
                   {exp.type}
                 </span>
                 <p className="text-sm text-text-secondary leading-relaxed">
@@ -246,7 +254,7 @@ export default function ProjectsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Hackathons
+            hackathons
           </h2>
         </FadeIn>
 

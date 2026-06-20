@@ -33,13 +33,14 @@ export default function StaggerChildren({
   };
 
   const item = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1],
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   };

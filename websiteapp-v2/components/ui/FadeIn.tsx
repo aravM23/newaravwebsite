@@ -18,16 +18,16 @@ export default function FadeIn({
   delay = 0,
   direction = "up",
   once = true,
-  duration = 0.6,
+  duration = 0.8,
 }: FadeInProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: "-10% 0px" });
+  const isInView = useInView(ref, { once, margin: "-12% 0px" });
 
   const directionOffset = {
-    up: { y: 24 },
-    down: { y: -24 },
-    left: { x: 24 },
-    right: { x: -24 },
+    up: { y: 28 },
+    down: { y: -28 },
+    left: { x: 28 },
+    right: { x: -28 },
     none: {},
   };
 
@@ -35,19 +35,22 @@ export default function FadeIn({
     <motion.div
       ref={ref}
       className={className}
+      style={{ willChange: "opacity, transform, filter" }}
       initial={{
         opacity: 0,
+        filter: "blur(6px)",
         ...directionOffset[direction],
       }}
       animate={
         isInView
-          ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, ...directionOffset[direction] }
+          ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)" }
+          : { opacity: 0, filter: "blur(6px)", ...directionOffset[direction] }
       }
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.4, 0.25, 1],
+        // calm ease-out (quint) — settles softly without bounce
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       {children}

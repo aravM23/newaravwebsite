@@ -70,7 +70,7 @@ export default function Chatbot() {
       {/* Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-[1000] w-12 h-12 rounded-full bg-text-primary text-bg flex items-center justify-center shadow-lg hover:bg-accent transition-colors duration-300"
+        className="fixed bottom-4 right-3 md:bottom-6 md:right-6 z-[1000] w-12 h-12 rounded-full bg-text-primary text-bg flex items-center justify-center shadow-lg hover:bg-accent transition-colors duration-300"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
@@ -96,7 +96,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.25, ease: [0.25, 0.4, 0.25, 1] }}
-            className="fixed bottom-20 right-6 z-[999] w-[360px] max-w-[calc(100vw-48px)] h-[480px] max-h-[calc(100vh-120px)] bg-bg border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-16 right-3 md:bottom-20 md:right-6 z-[999] w-[360px] max-w-[calc(100vw-24px)] md:max-w-[calc(100vw-48px)] h-[480px] max-h-[calc(100vh-100px)] bg-bg border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="px-5 py-4 border-b border-border">
@@ -160,12 +160,16 @@ export default function Chatbot() {
                   onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
                   placeholder="Type a question..."
                   disabled={isLoading}
+                  autoComplete="off"
+                  autoCapitalize="sentences"
+                  autoCorrect="on"
+                  spellCheck={true}
                   className="flex-1 px-4 py-2.5 bg-bg-secondary border border-border rounded-full text-sm text-text-primary placeholder:text-text-secondary/50 outline-none focus:border-accent transition-colors duration-200"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className="px-4 py-2.5 bg-text-primary text-bg rounded-full text-xs font-mono hover:bg-accent transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="px-4 py-3 min-h-[44px] bg-text-primary text-bg rounded-full text-xs font-mono hover:bg-accent transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   Send
                 </button>

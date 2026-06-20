@@ -25,14 +25,16 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-instrument-serif)", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        serif: ["var(--font-lora)", "Georgia", "serif"],
+        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        // "mono" slot is now the same sans — labels are differentiated by
+        // letter-spacing/size (see .font-mono in globals.css), not a 2nd family
+        mono: ["var(--font-jakarta)", "system-ui", "sans-serif"],
       },
       fontSize: {
-        display: ["clamp(3rem, 8vw, 7rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
-        heading: ["clamp(1.5rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
-        subheading: ["clamp(1.25rem, 2vw, 1.75rem)", { lineHeight: "1.3" }],
+        display: ["clamp(3rem, 8vw, 7rem)", { lineHeight: "1.08", letterSpacing: "-0.015em" }],
+        heading: ["clamp(1.5rem, 4vw, 3rem)", { lineHeight: "1.2", letterSpacing: "-0.005em" }],
+        subheading: ["clamp(1.25rem, 2vw, 1.75rem)", { lineHeight: "1.35" }],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

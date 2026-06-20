@@ -605,7 +605,12 @@ export default function DrivingGame() {
 
   // Keyboard
   useEffect(() => {
+    const isTyping = () => {
+      const tag = document.activeElement?.tagName.toLowerCase();
+      return tag === "input" || tag === "textarea" || (document.activeElement as HTMLElement)?.isContentEditable;
+    };
     const onDown = (e: KeyboardEvent) => {
+      if (isTyping()) return;
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") {
         e.preventDefault();
         keys.current.left = true;
@@ -620,6 +625,7 @@ export default function DrivingGame() {
       }
     };
     const onUp = (e: KeyboardEvent) => {
+      if (isTyping()) return;
       if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A")
         keys.current.left = false;
       if (e.key === "ArrowRight" || e.key === "d" || e.key === "D")

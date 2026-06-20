@@ -6,13 +6,13 @@ import MagneticButton from "@/components/ui/MagneticButton";
 
 const socials = [
   {
-    label: "LinkedIn",
+    label: "linkedin",
     href: "https://www.linkedin.com/in/arav-mathur-0567bb26a/",
   },
-  { label: "Twitter", href: "https://x.com/aravmathur23" },
-  { label: "GitHub", href: "https://github.com/aravM23" },
-  { label: "Medium", href: "https://medium.com/@aravmathur23" },
-  { label: "Instagram", href: "https://www.instagram.com/aravmathurr" },
+  { label: "twitter", href: "https://x.com/aravmathur23" },
+  { label: "github", href: "https://github.com/aravM23" },
+  { label: "medium", href: "https://medium.com/@aravmathur23" },
+  { label: "instagram", href: "https://www.instagram.com/aravmathurr" },
 ];
 
 function LiveClock() {
@@ -202,13 +202,14 @@ function FooterCar() {
         .footer-car {
           position: absolute;
           top: 0;
+          left: -60px;
           animation: cruise 7s linear infinite;
-          will-change: transform;
+          will-change: left;
         }
 
         @keyframes cruise {
           0% {
-            transform: translateX(-60px);
+            left: -60px;
             opacity: 0;
           }
           3% {
@@ -221,7 +222,7 @@ function FooterCar() {
             opacity: 0.55;
           }
           100% {
-            transform: translateX(calc(100vw + 20px));
+            left: 100%;
             opacity: 0;
           }
         }
@@ -254,7 +255,7 @@ export default function Footer() {
                   target="_blank"
                   strength={0.2}
                 >
-                  <span className="text-sm text-text-secondary hover:text-accent transition-colors duration-300 font-mono">
+                  <span className="text-sm text-text-secondary hover:text-accent transition-colors duration-300 font-mono py-2 inline-block">
                     {social.label}
                   </span>
                 </MagneticButton>

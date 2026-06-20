@@ -13,9 +13,9 @@ const KB = {
     program: "Computer Science",
     tagline: "18-year-old super cool guy from Toronto. Studying CS @ Waterloo. Interested in making and shipping cool shit.",
     goal: "I want to make something people use everyday.",
-    website_title: "Arav Mathur — Builder",
+    website_title: "Arav :)",
     website_description: "18-year-old builder from Toronto. CS @ Waterloo. Shipping products people love.",
-    hindi_name: "अरव",
+    hindi_name: "आरव",
     socials: {
       email: "aravmathur23@gmail.com",
       linkedin: "https://www.linkedin.com/in/arav-mathur-0567bb26a/",
@@ -30,18 +30,27 @@ const KB = {
 
   current_role: {
     title: "Building GrayPass",
-    detail: "Currently dialed in on GrayPass — passwordless authentication using behavioral biometrics. Backed with $100K pre-seed from 1517 Fund.",
+    detail: "Currently dialed in on GrayPass — passwordless authentication using behavioral biometrics. $350,000 pre-seed, $3K MRR (afore 26).",
     link: "https://www.graypass.org/",
   },
 
   projects: [
     {
+      name: "Oro",
+      short: "Fashion app that analyzes your mood boards, camera roll, and daily fits to build your style profile and generate outfits (300K+ views on IG, 5,000 downloads, featured at Fashion Week, 17 brand partners)",
+      detail: "Fashion app that analyzes your mood boards, camera roll, and daily fit pics to build your style profile. Algorithmically generates context-aware outfits from your existing wardrobe and discovers capsule pieces within your budget to purchase. 300K+ views on Instagram, 5,000 downloads, featured at Fashion Week, and 17 brand partners.",
+      tech: "",
+      link: "",
+      status: "",
+      keywords: ["oro", "fashion", "ecommerce", "e-commerce", "style", "wear", "clothing", "clothes", "recommend", "shop", "shopping"],
+    },
+    {
       name: "GrayPass",
-      short: "Building cognitive biometric security infrastructure for identity and authentication in enterprise systems. $100K pre-seed from 1517 Fund",
+      short: "Building cognitive biometric security infrastructure for identity and authentication in enterprise systems. $350,000 pre-seed, $3K MRR (afore 26)",
       detail: "Passwordless authentication protocol using behavioral biometrics (typing rhythm, gaze patterns). Converts user inputs into a privacy-preserving 15-D feature vector, mapped to a stable 64-D embedding space via contrastive learning. Cancelable biometric templates using salted hashes.",
       tech: "Python, PyTorch, JavaScript, NumPy, Cryptography, FastAPI",
       link: "https://www.graypass.org/",
-      funding: "$100K pre-seed from 1517 Fund",
+      funding: "$350,000 pre-seed, $3K MRR (afore 26)",
       status: "latest / active",
       keywords: ["graypass", "gray pass", "biometric", "passwordless", "authentication", "1517", "current"],
     },
@@ -55,11 +64,11 @@ const KB = {
     },
     {
       name: "TurtleShell",
-      short: "Got first VC cheque at 15. Gov of Ontario-backed tourist safety app. Forced shut down due to privacy laws.",
+      short: "Got $30K in VC at 15. Gov of Ontario-backed tourist safety app. Forced shut down due to privacy laws.",
       detail: "Tourist safety startup. Geospatial ETL pipeline ingesting 125K+ unstructured criminology records from global law enforcement portals. Graph Neural Network using PyTorch Geometric to model urban safety as a relational network. Distance-weighted queries across 55+ FBI-standardized crime classifications.",
       tech: "Python, PyTorch Geometric, PostGIS, PySpark, Swift, FastAPI",
       link: "https://youtu.be/DEJDNSfQB8I",
-      funding: "Backed by Gov of Ontario, $26K Microsoft funding",
+      funding: "$30K VC at 15, plus a $26K Microsoft grant and Government of Ontario backing",
       status: "inactive (shut down due to privacy laws)",
       keywords: ["turtleshell", "turtle shell", "turtle", "safety", "tourist", "ontario", "microsoft"],
     },
@@ -126,7 +135,7 @@ const KB = {
       role: "CEO & Founder",
       company: "TurtleShell",
       type: "founder",
-      detail: "Got first VC cheque at 15. Got grants, awards, and government backing by 16. Forced to shut it down 6 months after all that. Geospatial ETL pipeline on 125K+ criminology records. GNN with PyTorch Geometric for urban safety modeling.",
+      detail: "Got $30K in VC at 15. Got grants, awards, and government backing by 16. Forced to shut it down 6 months after all that. Geospatial ETL pipeline on 125K+ criminology records. GNN with PyTorch Geometric for urban safety modeling.",
       keywords: ["turtleshell", "founder", "ceo"],
     },
     {
@@ -174,6 +183,12 @@ const KB = {
       keywords: ["1517", "fund", "100k"],
     },
     {
+      name: "Afore VC Portfolio Company",
+      detail: "GrayPass was selected as an Afore VC portfolio company (F26 cohort).",
+      highlight: "Afore F26",
+      keywords: ["afore", "f26", "portfolio", "vc"],
+    },
+    {
       name: "President's Scholarship of Distinction",
       detail: "Awarded by University of Waterloo for outstanding academic achievement.",
       highlight: "Waterloo",
@@ -208,8 +223,6 @@ const KB = {
   research: [
     { name: "University of Toronto", detail: "Research under Dr. Brad Bass, member of the IPCC Nobel Peace Prize team." },
     { name: "MIT Verified Ocean De-acidification Research", detail: "Research on reversing ocean acidification." },
-    { name: "Ontario Youth Environment Council", detail: "Environmental advisory for the province. Directly advised environment legislature to Ontario's Minister of Environment, David Piccini." },
-    { name: "Peel District School Board Equity Lead Council", detail: "On the student council in highschool as an equity lead." },
   ],
 
   certifications: [
@@ -289,15 +302,27 @@ function matchScore(query: string, keywords: string[]): number {
   return score;
 }
 
+// Whole-word matcher so short terms like "ai", "ml", "age", "vc" don't
+// accidentally match inside words like "email", "language" or "service".
+function has(text: string, ...terms: string[]): boolean {
+  return terms.some((t) => {
+    const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, "i").test(text);
+  });
+}
+
 function searchKnowledgeBase(q: string): string | Promise<string> {
   const l = q.toLowerCase().trim();
 
   // ─── GREETINGS ───
-  if (/^(hi|hey|hello|sup|yo|what'?s up|howdy|hola)\b/.test(l)) {
-    return "Hey! 👋 I'm Arav's chatbot. Ask me anything — projects, experience, awards, skills, what he's listening to, side quests, contact info, or anything else on the site.";
+  if (/^(hi|hey|hello|sup|yo|wassup|what'?s up|howdy|hola|hiya|heya|good (morning|afternoon|evening))\b/.test(l)) {
+    return "Hey! 👋 I'm Arav's chatbot. Ask me anything — his projects, experience, awards, skills, what he's listening to, side quests, contact info, or anything else on the site.";
   }
-  if (/^(thanks|thank you|thx|ty)\b/.test(l)) {
+  if (/^(thanks|thank you|thx|ty|appreciate|cheers)\b/.test(l)) {
     return "No problem! Let me know if you want to know anything else about Arav.";
+  }
+  if (/^(bye|goodbye|see ya|see you|cya|later|peace|gtg)\b/.test(l)) {
+    return `Catch you later! 👋 You can always reach Arav at ${KB.personal.socials.email}.`;
   }
 
   // ─── SPOTIFY / MUSIC ───
@@ -334,16 +359,16 @@ function searchKnowledgeBase(q: string): string | Promise<string> {
 
   // ─── IDENTITY ───
   if (l.includes("who is") || l.includes("who are") || l.includes("tell me about arav") || l.includes("about yourself") || l.includes("introduce")) {
-    return `Arav Mathur is an 18-year-old CS student at the University of Waterloo from Toronto. ${KB.personal.tagline}\n\nHe's currently building GrayPass (passwordless auth via behavioral biometrics, $100K from 1517 Fund). Previously founded TurtleShell (backed by Gov of Ontario + $26K Microsoft funding), worked at Aview International, consulted for BenchSci and IKEA, and did research at UofT.\n\nSide quests: published two novels, played guitar in an Indo-Fusion band, 150K+ Instagram views, Flight Corporal in Air Cadets.`;
+    return `Arav Mathur is an 18-year-old CS student at the University of Waterloo from Toronto. ${KB.personal.tagline}\n\nHe's currently building GrayPass (passwordless auth via behavioral biometrics, $350,000 pre-seed, $3K MRR (afore 26)). Previously founded TurtleShell ($30K VC at 15, plus a $26K Microsoft grant + Gov of Ontario backing), worked at Aview International, consulted for BenchSci and IKEA, and did research at UofT.\n\nSide quests: published two novels, played guitar in an Indo-Fusion band, 150K+ Instagram views, Flight Corporal in Air Cadets.`;
   }
-  if (l.includes("how old") || l.includes("age")) return `Arav is ${KB.personal.age} years old.`;
+  if (has(l, "how old", "age", "birthday", "born", "years old")) return `Arav is ${KB.personal.age} years old.`;
   if ((l.includes("where") && (l.includes("from") || l.includes("live") || l.includes("based"))) || l.includes("location") || l.includes("city") || l.includes("toronto")) {
     return `Arav is from ${KB.personal.location}. Currently studying CS at Waterloo. ${KB.personal.footer_note}.`;
   }
   if (l.includes("school") || l.includes("university") || l.includes("waterloo") || l.includes("education") || l.includes("studying") || l.includes("college") || l.includes("degree")) {
     return `Arav studies ${KB.personal.program} at the ${KB.personal.school}. He also received the President's Scholarship of Distinction from Waterloo.`;
   }
-  if (l.includes("hindi") || l.includes("indian") || l.includes("nazar") || l.includes("🧿") || l.includes("अरव")) {
+  if (l.includes("hindi") || l.includes("indian") || l.includes("nazar") || l.includes("🧿") || l.includes("आरव")) {
     return `Arav's name in Hindi is ${KB.personal.hindi_name} 🧿. He's of Indian heritage, from Toronto.`;
   }
 
@@ -363,7 +388,7 @@ function searchKnowledgeBase(q: string): string | Promise<string> {
   // ─── ALL PROJECTS ───
   if (l.includes("project") || l.includes("built") || l.includes("made") || l.includes("portfolio") || l.includes("things") || l.includes("what has he built") || l.includes("what did he make") || l.includes("how many projects")) {
     return (
-      `Arav has built 9 projects:\n\n` +
+      `Arav has built 10 projects:\n\n` +
       KB.projects.map((p) => `• ${p.name} — ${p.short}`).join("\n") +
       `\n\nCheck them all out at /projects`
     );
@@ -428,7 +453,7 @@ function searchKnowledgeBase(q: string): string | Promise<string> {
   if (l.includes("python") || l.includes("javascript") || l.includes("typescript") || l.includes("swift") || l.includes("kotlin") || l.includes("sql")) {
     return `Yes! Arav works with: ${KB.skills.languages}. He also uses frameworks like ${KB.skills.frameworks} and ML tools like ${KB.skills.ml}.`;
   }
-  if (l.includes("machine learning") || l.includes("ai") || l.includes("ml") || l.includes("deep learning") || l.includes("neural")) {
+  if (has(l, "machine learning", "deep learning", "neural network", "neural networks", "artificial intelligence", "ai", "ml", "computer vision", "nlp")) {
     return `Arav works extensively in AI/ML. Tools: ${KB.skills.ml}. Projects include GrayPass (behavioral biometrics), Plant Pathogen Detection (CNNs), Facial Emotion Detection, TurtleShell (GNNs), Mood Sound Generation, and more.`;
   }
 
@@ -479,13 +504,24 @@ function searchKnowledgeBase(q: string): string | Promise<string> {
   if (l.includes("game") || l.includes("driving") || l.includes("play")) {
     return "There's an interactive driving game on the homepage! Scroll down past the Spotify section — dodge obstacles, collect stars, and try to beat your high score. Arrow keys or A/D to steer.";
   }
-  if (l.includes("chatbot") || l.includes("chat bot") || l.includes("you") || l.includes("are you real") || l.includes("are you ai")) {
+  if (l.includes("chatbot") || l.includes("chat bot") || has(l, "you", "you're", "ur a") || l.includes("are you real") || l.includes("are you ai")) {
     return "I'm Arav's AI chatbot! I know everything that's on this website — projects, experience, awards, skills, side quests, contact info, Spotify stats, and more. Ask me anything!";
   }
 
+  // ─── PERSONALITY / NEGATIVE (placed late so "is GrayPass good?" hits the project first) ───
+  if (/\b(rude|mean|bad|ugly|stupid|dumb|annoying|boring|lazy|terrible|awful|worst|hate|sucks?|trash|toxic|arrogant|selfish|fake|lame|jerk|creepy)\b/.test(l)) {
+    return "Haha, no — Arav's a genuinely nice, kind and fun person to be around (say all his friends 😎).";
+  }
+  if (
+    /\b(nice|kind|cool|funny|smart|intelligent|friendly|chill|sweet|genuine|humble|talented|amazing|awesome|incredible|personality|vibes?)\b/.test(l) ||
+    /(what.*(he|arav).*like|how is he|what kind of person|type of person|as a person)/.test(l)
+  ) {
+    return "Arav is a really nice, kind and fun person to be around (say all his friends 😎).";
+  }
+
   // ─── FUNDING / MONEY ───
-  if (l.includes("funding") || l.includes("money") || l.includes("investment") || l.includes("raised") || l.includes("investor") || l.includes("vc") || l.includes("venture")) {
-    return "Arav's funding history:\n\n• GrayPass — $100K pre-seed from 1517 Fund\n• TurtleShell — $26K from Microsoft + Government of Ontario backing\n• ConnectED — Rideau Hall Foundation's Best Youth Innovation\n• Ingenious+ — $2K for technology innovation\n• Villars — CHF 3,500 ecopreneurship scholarship";
+  if (l.includes("funding") || l.includes("money") || l.includes("investment") || l.includes("raised") || l.includes("investor") || has(l, "vc") || l.includes("venture") || l.includes("pre-seed") || l.includes("preseed")) {
+    return "Arav's funding history:\n\n• GrayPass — $350,000 pre-seed, $3K MRR (afore 26)\n• TurtleShell — $30K VC at 15, plus a $26K Microsoft grant + Government of Ontario backing\n• ConnectED — Rideau Hall Foundation's Best Youth Innovation\n• Ingenious+ — $2K for technology innovation\n• Villars — CHF 3,500 ecopreneurship scholarship";
   }
 
   // ─── NUMBER / COUNT QUESTIONS ───

@@ -2,14 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== BASE RESET ===== */
+/* ===== CURSOR ===== */
 * {
-  cursor: none !important;
+  cursor: url("/cursor.png") 2 2, auto;
 }
 
+a,
+button,
+[role="button"],
+label[for],
+summary,
+select,
+[data-cursor="pointer"],
+.cursor-pointer {
+  cursor: url("/cursor.png") 2 2, pointer;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  cursor: text;
+}
+
+/* Touch devices keep the native cursor behaviour */
 @media (hover: none) and (pointer: coarse) {
   * {
-    cursor: auto !important;
+    cursor: auto;
   }
 }
 
@@ -23,6 +41,21 @@ body {
   background-color: #FAF9F6;
   color: #1A1715;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "calt";
+  letter-spacing: -0.003em;
+  line-height: 1.65;
+}
+
+/* Headings breathe a little more with the serif */
+h1, h2, h3 {
+  font-feature-settings: "kern", "liga";
+}
+
+/* Labels (eyebrows, nav, links) — same sans, set apart by spacing */
+.font-mono {
+  letter-spacing: 0.04em;
+  font-feature-settings: "tnum";
 }
 
 ::selection {

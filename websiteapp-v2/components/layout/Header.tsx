@@ -7,10 +7,10 @@ import { usePathname } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/awards", label: "Awards" },
-  { href: "/reels", label: "Reels" },
+  { href: "/", label: "home" },
+  { href: "/projects", label: "projects" },
+  { href: "/awards", label: "awards" },
+  { href: "/reels", label: "reels" },
 ];
 
 export default function Header() {
@@ -75,7 +75,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden flex flex-col gap-1.5 p-3 -mr-1"
             aria-label="Toggle menu"
           >
             <motion.span

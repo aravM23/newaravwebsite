@@ -14,6 +14,12 @@ const awards = [
     highlight: "$100K",
   },
   {
+    title: "Afore VC Portfolio Company",
+    description:
+      "GrayPass selected as an Afore VC portfolio company (F26 cohort).",
+    highlight: "Afore F26",
+  },
+  {
     title: "President's Scholarship of Distinction",
     description:
       "Awarded by the University of Waterloo for outstanding academic achievement.",
@@ -69,15 +75,6 @@ const research = [
     description:
       "Research on reversing ocean acidification.",
   },
-  {
-    title: "Ontario Youth Environment Council",
-    description:
-      "Environmental advisory for the province. Directly advised environment legislature to Ontario's Minister of Environment, David Piccini.",
-  },
-  {
-    title: "Peel District School Board Equity Lead Council",
-    description: "On the student council in highschool as an equity lead.",
-  },
 ];
 
 /* ─── PAGE ───────────────────────────────────────────── */
@@ -89,13 +86,13 @@ export default function AwardsPage() {
       <section className="pt-32 pb-16 md:pt-40 md:pb-20">
         <TextReveal
           as="h1"
-          className="font-serif text-display text-text-primary mb-4 whitespace-nowrap"
+          className="font-serif text-display text-text-primary mb-4"
           splitBy="words"
         >
           Moments where im up 📈
         </TextReveal>
         <FadeIn delay={0.3}>
-          <p className="text-lg text-text-secondary whitespace-nowrap">
+          <p className="text-lg text-text-secondary">
             Put in the work for years for this, this ain&apos;t no coincidence - Central Cee 🐐
           </p>
         </FadeIn>
@@ -107,7 +104,7 @@ export default function AwardsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Awards
+            awards
           </h2>
         </FadeIn>
 
@@ -141,7 +138,7 @@ export default function AwardsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Research & Advisory
+            research & advisory
           </h2>
         </FadeIn>
 
@@ -166,7 +163,7 @@ export default function AwardsPage() {
       <section className="py-20 md:py-28">
         <FadeIn>
           <h2 className="font-serif text-heading text-text-primary mb-12">
-            Certifications
+            certifications
           </h2>
         </FadeIn>
 
